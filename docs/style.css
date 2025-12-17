@@ -1,0 +1,87 @@
+body {
+    font-family: ui-monospace, ui-sans-serif, "Liberation Mono", monospace, sans-serif;
+    text-align: center;
+    background-image: url("bg.jpg");
+    cursor: url('my-cursor.png'), auto;
+    margin: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    margin-top: 5%;
+
+    background-size:  auto 100%;
+    background-position: center center;
+}
+
+@media (min-width: 1000px) {
+    body{
+        background-size: 100%;
+        background-position: center center;
+    }
+}
+name {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.main {
+    width: 50%;
+    height: 100vh;
+
+    display: grid;
+    column-gap: 2.5%;
+    row-gap: 2.5%;
+
+    align-content: flex-start;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 800px) {
+    .main{
+        width: 90%;
+    }
+}
+
+.box {
+    display: flex;
+
+    background-color: white;
+    min-height: 20vh;
+    justify-content: center;
+    align-items: center;
+    contain: content;
+}
+
+.box.left {
+    grid-column: 1 / 1;
+}
+
+.box.right {
+    grid-column: 2 / 2;
+}
+
+img.resume {
+    max-width: 100%;
+}
+
+.hovcov{
+    position: absolute;
+    opacity: 0%;
+    background-color: darkgrey;
+    align-content: center;
+    color: black;
+
+    height: 100%;
+    width: 100%;
+
+    transition: 0.1s;
+
+}
+
+.hovcov:hover{
+    opacity: 50%;
+}
