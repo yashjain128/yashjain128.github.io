@@ -3,7 +3,6 @@ body {
     text-align: center;
     background-image: url("bg.jpg");
     cursor: url('my-cursor.png'), auto;
-    margin: 0;
 
     display: flex;
     justify-content: center;
@@ -30,38 +29,38 @@ name {
 
 .main {
     width: 50%;
-    height: 100vh;
 
-    display: grid;
-    column-gap: 2.5%;
-    row-gap: 2.5%;
+    display: flex;
 
-    align-content: flex-start;
-    grid-template-columns: repeat(2, 1fr);
+    align-items: flex-start;
+}
+
+
+
+.col1 {
+    width: 75%;
+    position: relative;
+
+    text-align: left;
+}
+
+.col2 {
+    width: 25%;
+    position: relative;
+    text-align: left;
+    
+    line-height: 1.8vw;
+    font-size: 1.2vw;
 }
 
 @media (max-width: 800px) {
     .main{
-        width: 90%;
+        width: 90vw;
     }
-}
-
-.box {
-    display: flex;
-
-    background-color: white;
-    min-height: 20vh;
-    justify-content: center;
-    align-items: center;
-    contain: content;
-}
-
-.box.left {
-    grid-column: 1 / 1;
-}
-
-.box.right {
-    grid-column: 2 / 2;
+    .col2{
+        line-height: 2.3vw;
+        font-size: 2vw;
+    }
 }
 
 img.resume {
@@ -79,6 +78,10 @@ img.resume {
     width: 100%;
 
     transition: 0.1s;
+    top: 0;
+    left: 0;
+
+    text-align: center;
 
 }
 
