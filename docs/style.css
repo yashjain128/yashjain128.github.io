@@ -8,7 +8,6 @@ body {
     justify-content: center;
     align-items: center;
 
-    overflow: hidden;
 
     margin-top: 5%;
 
@@ -30,8 +29,10 @@ name {
 .main {
     width: 50%;
 
+    text-align: left;
+}
+.cols {
     display: flex;
-
     align-items: flex-start;
 }
 
