@@ -12,13 +12,12 @@ body {
     margin-top: 5%;
 
     background-size:  auto 100%;
-    background-position: center center;
+    background-position: center;
 }
 
 @media (min-width: 1000px) {
     body{
         background-size: 100%;
-        background-position: center center;
     }
 }
 name {
@@ -30,19 +29,21 @@ name {
     width: 50%;
 
     text-align: left;
+    align-content: center;
 }
 .cols {
     display: flex;
-    align-items: flex-start;
+    align-content: center;
 }
 
 
 
 .col1 {
-    width: 80%;
-    position: relative;
+    width: 100%;
+    position: absolute;
 
-    text-align: left;
+
+    text-align: center;
 }
 
 .col2 {
@@ -64,23 +65,33 @@ name {
     }
 }
 
+#rescont {
+    width: min(100%, 100px);
+
+    position: relative;
+    left: 50%;    
+    transform: translate(-50%, 10%);
+
+}
+
 img.resume {
-    max-width: 100%;
+    height: auto;
+    width: 100%;
 }
 
 .hovcov{
-    position: absolute;
     opacity: 0%;
     background-color: darkgrey;
     align-content: center;
     color: black;
-
-    height: 100%;
+    
     width: 100%;
 
+
     transition: 0.1s;
-    top: 0;
+    position: absolute;
     left: 0;
+    height: 100%;
 
     text-align: center;
 
