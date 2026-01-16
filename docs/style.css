@@ -1,8 +1,6 @@
 body {
     font-family: ui-monospace, ui-sans-serif, "Liberation Mono", monospace, sans-serif;
     text-align: center;
-    background-image: url("bg.jpg");
-    cursor: url('my-cursor.png'), auto;
 
     display: flex;
     justify-content: center;
