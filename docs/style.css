@@ -9,8 +9,21 @@ body {
 
     margin: 5%;
 
-    background-position: center;
+    background-image: url("bg.svg");
+    background-repeat: repeat;
+    background-size: 100px;
     position: relative;
+    animation: scroll 150s infinite;
+    transform: translateX() / translateY();
+}
+
+@keyframes scroll {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 2000px 2000px;
+    }
 }
 
 name {
