@@ -1,5 +1,6 @@
 body {
-    font-family: ui-monospace, ui-sans-serif, "Liberation Mono", monospace, sans-serif;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    color: #222;
     text-align: center;
 
     display: flex;
@@ -10,6 +11,11 @@ body {
     margin: 5%;
 }
 
+h1 {
+    letter-spacing: 0.12em;
+    color: #111;
+}
+
 #hat-bg {
     position: fixed;
     top: 0;
@@ -17,11 +23,6 @@ body {
     z-index: -1;
     pointer-events: none;
     will-change: transform;
-}
-
-name {
-    font-size: 30px;
-    font-weight: bold;
 }
 
 .main {
@@ -37,12 +38,11 @@ name {
 
 
 .col1 {
-    text-shadow: 2px 2px 5px #555;
+    /* soft white halo: lifts text off the tiling without muddying it */
+    text-shadow: 0 0 6px #fff, 0 0 12px #fff, 0 0 20px #fff;
     width: 100%;
     position: absolute;
     left: 0;
-
-    border-color: green;
 
     text-align: center;
 }
@@ -61,7 +61,8 @@ img.resume {
     height: auto;
     width: 100%;
 
-    box-shadow: 2px 2px 5px #555;
+    border: 1px solid rgba(68, 68, 68, 0.15);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .hovcov{
