@@ -21,9 +21,8 @@ const UNIT = 40;              // px per outline unit; a hat is ~3*UNIT wide
 const SPEED_X = 2000 / 150;   // drift px/s — same velocity as the old CSS grid
 const SPEED_Y = 2000 / 150;
 const PAD = 400;              // off-screen margin consumed between repaints
-const STROKE = 'rgba(68, 68, 68, 0.3)';
+const STROKE = 'rgba(68, 68, 68, 0.18)';
 const LINE_W = 1;
-const MIRROR_FILL = 'rgba(68, 68, 68, 0.05)';  // faint tint on reflected hats
 const CULL_MARGIN = 3 * UNIT; // hats bulge past their metatile outline a bit
 const FLASH_ALPHA = 0.3;      // grey level of a clicked tile
 const FLASH_MS = 2500;        // how long a clicked tile takes to fade back
@@ -316,7 +315,7 @@ let topPatch = constructPatch(tiles[0], tiles[1], tiles[2], tiles[3]);
 let canvas, ctx, dpr;
 let cssW = 0, cssH = 0; // canvas CSS size (viewport + 2*PAD)
 let rx = 0, ry = 0;     // drift offset at last repaint
-let strokePath, fillPath;
+let strokePath;
 
 let fx, fctx;           // overlay canvas for click flashes
 let fxW = 0, fxH = 0;
@@ -417,29 +416,26 @@ function drawFlashes(now) {
 	}
 }
 
-function addHat(S, reflected) {
+function addHat(S) {
 	const p0 = transPt(S, hat_outline[0]);
 	strokePath.moveTo(p0.x, p0.y);
-	if (reflected) fillPath.moveTo(p0.x, p0.y);
 	for (let i = 1; i < hat_outline.length; ++i) {
 		const p = transPt(S, hat_outline[i]);
 		strokePath.lineTo(p.x, p.y);
-		if (reflected) fillPath.lineTo(p.x, p.y);
 	}
 	strokePath.closePath();
-	if (reflected) fillPath.closePath();
 }
 
 function walk(geom, S) {
 	if (geom instanceof HatTile) {
-		addHat(S, geom.label === 'H1');
+		addHat(S);
 		return;
 	}
 	for (const ch of geom.children) {
 		const Sc = mul(S, ch.T);
 		if (ch.geom instanceof HatTile) {
 			// leaves are cheap; their parent was already culled
-			addHat(Sc, ch.geom.label === 'H1');
+			addHat(Sc);
 			continue;
 		}
 		let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
@@ -464,15 +460,12 @@ function render() {
 	ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 	ctx.clearRect(0, 0, cssW, cssH);
 	strokePath = new Path2D();
-	fillPath = new Path2D();
 	walk(topPatch, drawTransform());
-	ctx.fillStyle = MIRROR_FILL;
-	ctx.fill(fillPath);
 	ctx.strokeStyle = STROKE;
 	ctx.lineWidth = LINE_W;
 	ctx.lineJoin = 'round';
 	ctx.stroke(strokePath);
-	strokePath = fillPath = null;
+	strokePath = null;
 }
 
 function resize() {
